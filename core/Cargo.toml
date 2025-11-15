@@ -1,0 +1,24 @@
+[package]
+name = "puniyu_node_core"
+version = "0.1.0"
+authors.workspace = true
+license.workspace = true
+readme.workspace = true
+homepage.workspace = true
+repository.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish = false
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+napi = { version = "3.5.0", features = ["async"] }
+napi-derive = "3.3.0"
+
+puniyu_core = { git = "https://github.com/puniyu/puniyu", rev = "0cc4759" }
+puniyu_adapter_console = { git = "https://github.com/puniyu/puniyu", rev = "0cc4759" }
+
+[build-dependencies]
+napi-build = "2.3.1"

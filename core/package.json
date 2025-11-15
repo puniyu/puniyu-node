@@ -1,0 +1,42 @@
+{
+  "name": "@puniyu/core",
+  "version": "1.0.0",
+  "description": "puniyu, core node sdk",
+  "keywords": [
+    "NAPI",
+    "napi-rs",
+    "puniyu"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/puniyu/puniyu-node.git"
+  },
+  "license": "LGPL-3.0",
+  "author": "puniyu",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "artifacts": "napi artifacts",
+    "build": "echo \"Use just build\"",
+    "create-npm-dirs": "napi create-npm-dirs",
+    "prepublishOnly": "napi prepublish --no-gh-release"
+  },
+  "engines": {
+    "node": ">= 12.22.0 < 13 || >= 14.17.0 < 15 || >= 15.12.0 < 16 || >= 16.0.0"
+  },
+  "napi": {
+    "binaryName": "system-info",
+    "targets": [
+      "x86_64-pc-windows-msvc",
+      "x86_64-apple-darwin",
+      "x86_64-unknown-linux-gnu",
+      "aarch64-unknown-linux-gnu",
+      "aarch64-apple-darwin"
+    ],
+    "dtsHeader": "// powered by puniyu_core\n"
+  }
+}

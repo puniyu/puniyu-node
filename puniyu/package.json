@@ -1,0 +1,33 @@
+{
+  "name": "@puniyu/puniyu",
+  "version": "1.0.0",
+  "description": "puniyu, 一个高性能的bot框架",
+  "keywords": [
+    "puniyu"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/puniyu/puniyu-node.git"
+  },
+  "license": "LGPL-3.0",
+  "author": "puniyu",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./start": {
+      "import": "./dist/start.mjs",
+      "types": "./dist/start.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "echo \"Use just build\""
+  }
+}

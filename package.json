@@ -1,0 +1,25 @@
+{
+  "name": "@puniyu/project",
+  "version": "1.0.0",
+  "description": "puniyu, core node sdk",
+  "license": "LGPL-3.0",
+  "author": "puniyu",
+  "type": "module",
+  "scripts": {
+    "build": "echo \"Use just build\"",
+    "build:core": "echo \"Use just build-core\""
+  },
+  "devDependencies": {
+    "@napi-rs/cli": "^3.4.1",
+    "@prettier/plugin-oxc": "^0.0.4",
+    "@types/node": "^22.15.3",
+    "cross-env": "^7.0.3",
+    "oxlint": "^1.26.0",
+    "prettier": "^3.6.2",
+    "tsc-alias": "1.8.13",
+    "tsdown": "^0.15.12",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  },
+  "packageManager": "pnpm@10.22.0"
+}
