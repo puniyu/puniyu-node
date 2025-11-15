@@ -1708,7 +1708,7 @@ dependencies = [
 [[package]]
 name = "puniyu_adapter"
 version = "0.1.8"
-source = "git+https://github.com/puniyu/puniyu?rev=0cc4759#0cc4759a97b7c4aece6818171f2044ecd554e7be"
+source = "git+https://github.com/puniyu/puniyu?rev=859c86e8d0e2047643b7c41931055950ab96c839#859c86e8d0e2047643b7c41931055950ab96c839"
 dependencies = [
  "async-trait",
  "puniyu_adapter_api",
@@ -1728,7 +1728,7 @@ dependencies = [
 [[package]]
 name = "puniyu_adapter_api"
 version = "0.1.8"
-source = "git+https://github.com/puniyu/puniyu?rev=0cc4759#0cc4759a97b7c4aece6818171f2044ecd554e7be"
+source = "git+https://github.com/puniyu/puniyu?rev=859c86e8d0e2047643b7c41931055950ab96c839#859c86e8d0e2047643b7c41931055950ab96c839"
 dependencies = [
  "async-trait",
  "puniyu_common",
@@ -1743,7 +1743,7 @@ dependencies = [
 [[package]]
 name = "puniyu_adapter_console"
 version = "0.1.8"
-source = "git+https://github.com/puniyu/puniyu?rev=0cc4759#0cc4759a97b7c4aece6818171f2044ecd554e7be"
+source = "git+https://github.com/puniyu/puniyu?rev=859c86e8d0e2047643b7c41931055950ab96c839#859c86e8d0e2047643b7c41931055950ab96c839"
 dependencies = [
  "async-trait",
  "puniyu_adapter",
@@ -1756,7 +1756,7 @@ dependencies = [
 [[package]]
 name = "puniyu_bot"
 version = "0.1.8"
-source = "git+https://github.com/puniyu/puniyu?rev=0cc4759#0cc4759a97b7c4aece6818171f2044ecd554e7be"
+source = "git+https://github.com/puniyu/puniyu?rev=859c86e8d0e2047643b7c41931055950ab96c839#859c86e8d0e2047643b7c41931055950ab96c839"
 dependencies = [
  "puniyu_adapter_api",
  "puniyu_builder",
@@ -1769,12 +1769,12 @@ dependencies = [
 [[package]]
 name = "puniyu_build"
 version = "0.1.8"
-source = "git+https://github.com/puniyu/puniyu?rev=0cc4759#0cc4759a97b7c4aece6818171f2044ecd554e7be"
+source = "git+https://github.com/puniyu/puniyu?rev=859c86e8d0e2047643b7c41931055950ab96c839#859c86e8d0e2047643b7c41931055950ab96c839"
 
 [[package]]
 name = "puniyu_builder"
 version = "0.1.8"
-source = "git+https://github.com/puniyu/puniyu?rev=0cc4759#0cc4759a97b7c4aece6818171f2044ecd554e7be"
+source = "git+https://github.com/puniyu/puniyu?rev=859c86e8d0e2047643b7c41931055950ab96c839#859c86e8d0e2047643b7c41931055950ab96c839"
 dependencies = [
  "async-trait",
  "puniyu_adapter_api",
@@ -1787,7 +1787,7 @@ dependencies = [
 [[package]]
 name = "puniyu_command"
 version = "0.1.8"
-source = "git+https://github.com/puniyu/puniyu?rev=0cc4759#0cc4759a97b7c4aece6818171f2044ecd554e7be"
+source = "git+https://github.com/puniyu/puniyu?rev=859c86e8d0e2047643b7c41931055950ab96c839#859c86e8d0e2047643b7c41931055950ab96c839"
 dependencies = [
  "async-trait",
  "itertools",
@@ -1797,7 +1797,7 @@ dependencies = [
 [[package]]
 name = "puniyu_common"
 version = "0.1.8"
-source = "git+https://github.com/puniyu/puniyu?rev=0cc4759#0cc4759a97b7c4aece6818171f2044ecd554e7be"
+source = "git+https://github.com/puniyu/puniyu?rev=859c86e8d0e2047643b7c41931055950ab96c839#859c86e8d0e2047643b7c41931055950ab96c839"
 dependencies = [
  "puniyu_system_info",
  "serde",
@@ -1808,7 +1808,7 @@ dependencies = [
 [[package]]
 name = "puniyu_config"
 version = "0.1.8"
-source = "git+https://github.com/puniyu/puniyu?rev=0cc4759#0cc4759a97b7c4aece6818171f2044ecd554e7be"
+source = "git+https://github.com/puniyu/puniyu?rev=859c86e8d0e2047643b7c41931055950ab96c839#859c86e8d0e2047643b7c41931055950ab96c839"
 dependencies = [
  "flume",
  "notify",
@@ -1820,7 +1820,7 @@ dependencies = [
 [[package]]
 name = "puniyu_contact"
 version = "0.1.8"
-source = "git+https://github.com/puniyu/puniyu?rev=0cc4759#0cc4759a97b7c4aece6818171f2044ecd554e7be"
+source = "git+https://github.com/puniyu/puniyu?rev=859c86e8d0e2047643b7c41931055950ab96c839#859c86e8d0e2047643b7c41931055950ab96c839"
 dependencies = [
  "serde",
  "strum",
@@ -1829,7 +1829,7 @@ dependencies = [
 [[package]]
 name = "puniyu_core"
 version = "0.1.8"
-source = "git+https://github.com/puniyu/puniyu?rev=0cc4759#0cc4759a97b7c4aece6818171f2044ecd554e7be"
+source = "git+https://github.com/puniyu/puniyu?rev=859c86e8d0e2047643b7c41931055950ab96c839#859c86e8d0e2047643b7c41931055950ab96c839"
 dependencies = [
  "async-trait",
  "convert_case 0.9.0",
@@ -1853,7 +1853,7 @@ dependencies = [
 [[package]]
 name = "puniyu_element"
 version = "0.1.8"
-source = "git+https://github.com/puniyu/puniyu?rev=0cc4759#0cc4759a97b7c4aece6818171f2044ecd554e7be"
+source = "git+https://github.com/puniyu/puniyu?rev=859c86e8d0e2047643b7c41931055950ab96c839#859c86e8d0e2047643b7c41931055950ab96c839"
 dependencies = [
  "serde",
  "serde_json",
@@ -1863,7 +1863,7 @@ dependencies = [
 [[package]]
 name = "puniyu_event"
 version = "0.1.8"
-source = "git+https://github.com/puniyu/puniyu?rev=0cc4759#0cc4759a97b7c4aece6818171f2044ecd554e7be"
+source = "git+https://github.com/puniyu/puniyu?rev=859c86e8d0e2047643b7c41931055950ab96c839#859c86e8d0e2047643b7c41931055950ab96c839"
 dependencies = [
  "puniyu_adapter_api",
  "puniyu_config",
@@ -1876,7 +1876,7 @@ dependencies = [
 [[package]]
 name = "puniyu_event_bus"
 version = "0.1.8"
-source = "git+https://github.com/puniyu/puniyu?rev=0cc4759#0cc4759a97b7c4aece6818171f2044ecd554e7be"
+source = "git+https://github.com/puniyu/puniyu?rev=859c86e8d0e2047643b7c41931055950ab96c839#859c86e8d0e2047643b7c41931055950ab96c839"
 dependencies = [
  "puniyu_adapter_api",
  "puniyu_event",
@@ -1890,7 +1890,7 @@ dependencies = [
 [[package]]
 name = "puniyu_handler"
 version = "0.1.8"
-source = "git+https://github.com/puniyu/puniyu?rev=0cc4759#0cc4759a97b7c4aece6818171f2044ecd554e7be"
+source = "git+https://github.com/puniyu/puniyu?rev=859c86e8d0e2047643b7c41931055950ab96c839#859c86e8d0e2047643b7c41931055950ab96c839"
 dependencies = [
  "async-trait",
  "puniyu_adapter_api",
@@ -1901,7 +1901,7 @@ dependencies = [
 [[package]]
 name = "puniyu_library"
 version = "0.1.8"
-source = "git+https://github.com/puniyu/puniyu?rev=0cc4759#0cc4759a97b7c4aece6818171f2044ecd554e7be"
+source = "git+https://github.com/puniyu/puniyu?rev=859c86e8d0e2047643b7c41931055950ab96c839#859c86e8d0e2047643b7c41931055950ab96c839"
 dependencies = [
  "libloading 0.9.0",
  "thiserror 2.0.17",
@@ -1928,7 +1928,7 @@ dependencies = [
 [[package]]
 name = "puniyu_macros"
 version = "0.1.8"
-source = "git+https://github.com/puniyu/puniyu?rev=0cc4759#0cc4759a97b7c4aece6818171f2044ecd554e7be"
+source = "git+https://github.com/puniyu/puniyu?rev=859c86e8d0e2047643b7c41931055950ab96c839#859c86e8d0e2047643b7c41931055950ab96c839"
 dependencies = [
  "convert_case 0.9.0",
  "croner",
@@ -1940,7 +1940,7 @@ dependencies = [
 [[package]]
 name = "puniyu_matcher"
 version = "0.1.8"
-source = "git+https://github.com/puniyu/puniyu?rev=0cc4759#0cc4759a97b7c4aece6818171f2044ecd554e7be"
+source = "git+https://github.com/puniyu/puniyu?rev=859c86e8d0e2047643b7c41931055950ab96c839#859c86e8d0e2047643b7c41931055950ab96c839"
 dependencies = [
  "puniyu_element",
  "puniyu_event",
@@ -1961,7 +1961,7 @@ dependencies = [
 [[package]]
 name = "puniyu_registry"
 version = "0.1.8"
-source = "git+https://github.com/puniyu/puniyu?rev=0cc4759#0cc4759a97b7c4aece6818171f2044ecd554e7be"
+source = "git+https://github.com/puniyu/puniyu?rev=859c86e8d0e2047643b7c41931055950ab96c839#859c86e8d0e2047643b7c41931055950ab96c839"
 dependencies = [
  "futures",
  "puniyu_bot",
@@ -1979,7 +1979,7 @@ dependencies = [
 [[package]]
 name = "puniyu_sender"
 version = "0.1.8"
-source = "git+https://github.com/puniyu/puniyu?rev=0cc4759#0cc4759a97b7c4aece6818171f2044ecd554e7be"
+source = "git+https://github.com/puniyu/puniyu?rev=859c86e8d0e2047643b7c41931055950ab96c839#859c86e8d0e2047643b7c41931055950ab96c839"
 dependencies = [
  "serde",
  "strum",
@@ -1988,7 +1988,7 @@ dependencies = [
 [[package]]
 name = "puniyu_server"
 version = "0.1.8"
-source = "git+https://github.com/puniyu/puniyu?rev=0cc4759#0cc4759a97b7c4aece6818171f2044ecd554e7be"
+source = "git+https://github.com/puniyu/puniyu?rev=859c86e8d0e2047643b7c41931055950ab96c839#859c86e8d0e2047643b7c41931055950ab96c839"
 dependencies = [
  "actix-web",
  "futures-util",
@@ -2011,7 +2011,7 @@ dependencies = [
 [[package]]
 name = "puniyu_task"
 version = "0.1.8"
-source = "git+https://github.com/puniyu/puniyu?rev=0cc4759#0cc4759a97b7c4aece6818171f2044ecd554e7be"
+source = "git+https://github.com/puniyu/puniyu?rev=859c86e8d0e2047643b7c41931055950ab96c839#859c86e8d0e2047643b7c41931055950ab96c839"
 dependencies = [
  "chrono-tz",
  "puniyu_builder",
