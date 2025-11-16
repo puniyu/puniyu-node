@@ -5,13 +5,12 @@
   ],
   "packageRules": [
     {
-      "groupName": "puniyu node packages",
-      "matchManagers": ["cargo", "pnpm"],
-      "rangeStrategy": "auto",
-      "schedule": ["at any time"],
-      "labels": [
-        "dependencies"
-      ]
+      "groupName": "puniyu",
+      "matchDatasources": [
+        "crate"
+      ],
+      "matchPackageNames": ["puniyu_**"],
+      "rangeStrategy": "auto"
     }
   ]
 }
