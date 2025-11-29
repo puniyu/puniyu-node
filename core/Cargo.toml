@@ -18,7 +18,7 @@ napi = { version = "3.5.0", features = ["async"] }
 napi-derive = "3.3.0"
 
 puniyu_core = { git = "https://github.com/puniyu/puniyu", rev = "0cc4759" }
-puniyu_adapter_console = { git = "https://github.com/puniyu/puniyu", rev = "0cc4759" }
+puniyu_adapter_console = { git = "https://github.com/puniyu/puniyu", rev = "f561597ee8a829f648cc52a91f0bfe717b218449" }
 
 [build-dependencies]
 napi-build = "2.3.1"
