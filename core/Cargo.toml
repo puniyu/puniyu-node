@@ -17,7 +17,7 @@ crate-type = ["cdylib"]
 napi = { version = "3.5.0", features = ["async"] }
 napi-derive = "3.3.0"
 
-puniyu_core = { git = "https://github.com/puniyu/puniyu", rev = "0cc4759" }
+puniyu_core = { git = "https://github.com/puniyu/puniyu", rev = "cc0013aff04d8efea0b9cdda3f11eae4d1eac97b" }
 puniyu_adapter_console = { git = "https://github.com/puniyu/puniyu", rev = "0cc4759" }
 
 [build-dependencies]
