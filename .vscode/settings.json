@@ -1,0 +1,8 @@
+{
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    ".env": "*.env, .env.*",
+    "tsconfig.json": "tsconfig.*.json, env.d.ts, tsup.*.ts, tsdown.*.ts",
+    "package.json": "package-lock.json, .node-version, pnpm*, .yarnrc*, yarn*, .eslint*, eslint*, .prettier*, prettier*, .editorconfig, .oxlintrc*.json,CHANGELOG*.md, CODE_OF_CONDUCT.md, *.gitignore, LICENSE, README.md, .release*.json, .gitattributes"
+  }
+}
