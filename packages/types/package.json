@@ -1,13 +1,49 @@
 {
   "name": "@puniyu/types",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "puniyu的类型库",
   "type": "module",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc --noEmit && tsdown"
+    "artifacts": "napi artifacts",
+    "build": "napi build --platform --release -p puniyu_node_types --esm -o dist --no-js",
+    "create-npm-dirs": "napi create-npm-dirs"
   },
-  "keywords": [],
+  "files": [
+    "dist/index.d.ts"
+  ],
+  "homepage": "https://github.com/puniyu/puniyu-node",
+  "bugs": {
+    "url": "https://github.com/puniyu/puniyu-node/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/puniyu/puniyu-node.git"
+  },
+  "napi": {
+    "binaryName": "puniyu-node-types",
+    "targets": [
+      "x86_64-pc-windows-msvc",
+      "x86_64-apple-darwin",
+      "x86_64-unknown-linux-gnu",
+      "aarch64-unknown-linux-gnu",
+      "aarch64-apple-darwin"
+    ],
+    "dtsHeader": "// powered by puniyu\n"
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "keywords": [
+    "puniyu"
+  ],
   "author": "puniyu",
-  "license": "MIT"
+  "license": "LGPL-3.0-only",
+  "optionalDependencies": {
+    "@puniyu/types-win32-x64-msvc": "1.0.0",
+    "@puniyu/types-darwin-x64": "1.0.0",
+    "@puniyu/types-linux-x64-gnu": "1.0.0",
+    "@puniyu/types-linux-arm64-gnu": "1.0.0",
+    "@puniyu/types-darwin-arm64": "1.0.0"
+  }
 }
