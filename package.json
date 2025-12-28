@@ -26,5 +26,5 @@
   ],
   "author": "puniyu",
   "license": "MIT",
-  "packageManager": "pnpm@10.25.0"
+  "packageManager": "pnpm@10.23.0"
 }

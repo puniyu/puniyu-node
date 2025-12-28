@@ -1,10 +1,13 @@
 use serde::{Deserialize, Serialize};
 use napi_derive::napi;
+use puniyu_types::contact::Scene as puniyu_scene;
+use puniyu_protocol::contact::SceneType as puniyu_scene_type;
+use crate::impl_enum_from_trait;
 
 mod friend;
-use friend::FriendContact;
+pub use friend::FriendContact;
 mod group;
-use group::GroupContact;
+pub use group::GroupContact;
 
 #[derive(Debug, Clone, PartialEq, Deserialize, Serialize)]
 #[napi]
@@ -15,6 +18,15 @@ pub enum Scene {
 	/// 好友场景
 	Friend,
 }
+impl_enum_from_trait!(Scene, puniyu_scene, {
+	Friend => Friend,
+	Group => Group,
+});
+impl_enum_from_trait!(Scene, puniyu_scene_type, {
+	Friend => Friend,
+	Group => Group,
+});
+
 
 #[derive(Debug, Clone, PartialEq, Deserialize, Serialize)]
 #[napi]
