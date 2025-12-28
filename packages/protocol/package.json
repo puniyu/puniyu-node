@@ -1,16 +1,16 @@
 {
-  "name": "@puniyu/types",
-  "version": "1.0.0",
-  "description": "puniyu的类型库",
+  "name": "@puniyu/protocol",
+  "version": "0.1.0",
+  "description": "puniyu的协议库",
   "type": "module",
   "types": "dist/index.d.ts",
   "scripts": {
     "artifacts": "napi artifacts",
-    "build": "napi build --platform --release -p puniyu_node_types --esm -o dist --no-js",
+    "build": "napi build --platform --release -p puniyu_node_protocol --esm -o dist",
     "create-npm-dirs": "napi create-npm-dirs"
   },
   "files": [
-    "dist/index.d.ts"
+    "dist"
   ],
   "homepage": "https://github.com/puniyu/puniyu-node",
   "bugs": {
@@ -21,7 +21,7 @@
     "url": "git+https://github.com/puniyu/puniyu-node.git"
   },
   "napi": {
-    "binaryName": "puniyu-node-types",
+    "binaryName": "protocol",
     "targets": [
       "x86_64-pc-windows-msvc",
       "x86_64-apple-darwin",
