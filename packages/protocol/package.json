@@ -1,16 +1,16 @@
 {
-  "name": "@puniyu/types",
-  "version": "1.0.0",
-  "description": "puniyu的类型库",
+  "name": "@puniyu/protocol",
+  "version": "0.1.0",
+  "description": "puniyu的协议库",
   "type": "module",
   "types": "dist/index.d.ts",
   "scripts": {
     "artifacts": "napi artifacts",
-    "build": "napi build --platform --release -p puniyu_node_types --esm -o dist --no-js",
+    "build": "napi build --platform --release -p puniyu_node_protocol --esm -o dist",
     "create-npm-dirs": "napi create-npm-dirs"
   },
   "files": [
-    "dist/index.d.ts"
+    "dist"
   ],
   "homepage": "https://github.com/puniyu/puniyu-node",
   "bugs": {
@@ -21,7 +21,7 @@
     "url": "git+https://github.com/puniyu/puniyu-node.git"
   },
   "napi": {
-    "binaryName": "puniyu-node-types",
+    "binaryName": "protocol",
     "targets": [
       "x86_64-pc-windows-msvc",
       "x86_64-apple-darwin",
@@ -38,12 +38,5 @@
     "puniyu"
   ],
   "author": "puniyu",
-  "license": "LGPL-3.0-only",
-  "optionalDependencies": {
-    "@puniyu/types-win32-x64-msvc": "1.0.0",
-    "@puniyu/types-darwin-x64": "1.0.0",
-    "@puniyu/types-linux-x64-gnu": "1.0.0",
-    "@puniyu/types-linux-arm64-gnu": "1.0.0",
-    "@puniyu/types-darwin-arm64": "1.0.0"
-  }
+  "license": "LGPL-3.0-only"
 }
