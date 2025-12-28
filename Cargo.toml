@@ -16,6 +16,10 @@ rust-version = "1.88.0"
 [workspace.dependencies]
 serde = { version = "1.0.228", features = ["derive"] }
 thiserror = "2"
+bytes = { version = "1.11.0", features = ["serde"] }
+napi = "3.0.0"
+napi-derive = "3.0.0"
+napi-build = "2"
 
 [profile.dev]
 incremental = true
