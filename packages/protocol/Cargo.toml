@@ -1,0 +1,32 @@
+[package]
+name = "puniyu_node_protocol"
+version = "0.1.0"
+authors.workspace = true
+license.workspace = true
+readme.workspace = true
+homepage.workspace = true
+repository.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[lib]
+crate-type = ["rlib", "cdylib"]
+
+[dependencies]
+serde.workspace = true
+napi-derive.workspace = true
+napi = { workspace = true, features = ["chrono_date"] }
+bytes = { version = "1.11.0" }
+prost = { version = "0.14.1" }
+
+puniyu_types = { git = "https://github.com/puniyu/puniyu", rev = "a91e071" }
+puniyu_protocol = { git = "https://github.com/puniyu/puniyu", rev = "a91e071" }
+chrono = "0.4.42"
+time = { version = "0.3.44", features = ["serde"] }
+
+
+[build-dependencies]
+napi-build.workspace = true
+
+
+
