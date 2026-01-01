@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/puniyu/puniyu-node/compare/protocol-v0.2.1...protocol-v0.2.2) (2026-01-01)
+
+
+### 🐛 错误修复
+
+* **build:** 修复二进制包未发布 ([75687bc](https://github.com/puniyu/puniyu-node/commit/75687bcf89615c7f2a3899fa58af69b6c0af6657))
+
 ## [0.2.1](https://github.com/puniyu/puniyu-node/compare/protocol-v0.2.0...protocol-v0.2.1) (2026-01-01)
 
 
