@@ -4,6 +4,7 @@
   "description": "puniyu的协议库",
   "type": "module",
   "types": "dist/index.d.ts",
+  "main": "dist/index.js",
   "scripts": {
     "artifacts": "napi artifacts",
     "build": "napi build --platform --release -p puniyu_node_protocol --esm -o dist",
