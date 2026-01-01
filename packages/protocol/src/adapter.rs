@@ -4,7 +4,6 @@ use chrono::{DateTime, Utc};
 use napi_derive::napi;
 use puniyu_protocol::adapter as puniyu_protocol_adapter;
 use puniyu_types::adapter as puniyu_adapter;
-use time::OffsetDateTime;
 
 /// 适配器平台
 ///
@@ -78,9 +77,10 @@ impl_enum_from_trait!(AdapterStandard, puniyu_protocol_adapter::AdapterStandard,
 /// 用于标识适配器所使用的协议实现，用于在不同平台之间进行消息传递。
 ///
 /// - QQBOT: [QQ 平台协议实现](https://bot.q.qq.com/wiki)
-/// - ICQQ: [OICQ 平台协议实现](https://github.com/takayama-lily/oicq)
+/// - ICQQ: [Icqq 平台协议实现](https://github.com/icqqjs/icqq)
 /// - GoCqHttp: [go-cqhttp 协议实现](https://docs.go-cqhttp.org/)
 /// - NapCat: [NapCat 协议实现](https://napneko.github.io/zh-CN/)
+/// - Oicq: [Oicq 平台协议实现](https://github.com/takayama-lily/oicq)
 /// - LLOneBot: [LLOneBot 协议实现](https://llonebot.github.io/zh-CN/)
 /// - Lagrange: [Lagrange 协议实现](ttps://lagrangedev.github.io/Lagrange.Doc/Lagrange.OneBot/)
 /// - Console: 控制台协议实现
@@ -88,6 +88,7 @@ impl_enum_from_trait!(AdapterStandard, puniyu_protocol_adapter::AdapterStandard,
 #[napi]
 pub enum AdapterProtocol {
     QQBot,
+    Oicq,
     Icqq,
     GoCqHttp,
     NapCat,
@@ -100,6 +101,7 @@ pub enum AdapterProtocol {
 
 impl_enum_from_trait!(AdapterProtocol, puniyu_adapter::AdapterProtocol, {
     QQBot => QQBot,
+    Oicq => Oicq,
     Icqq => Icqq,
     GoCqHttp => GoCqHttp,
     NapCat => NapCat,
@@ -111,6 +113,7 @@ impl_enum_from_trait!(AdapterProtocol, puniyu_adapter::AdapterProtocol, {
 });
 impl_enum_from_trait!(AdapterProtocol, puniyu_protocol_adapter::AdapterProtocol, {
     QQBot => QqBot,
+    Oicq => Oicq,
     Icqq => Icqq,
     GoCqHttp => GoCqHttp,
     NapCat => NapCat,
@@ -182,8 +185,6 @@ pub struct AdapterInfo {
 
 impl From<puniyu_adapter::AdapterInfo> for AdapterInfo {
     fn from(adapter: puniyu_adapter::AdapterInfo) -> Self {
-        let ts_nanos = adapter.connect_time.unix_timestamp_nanos();
-        let connect_time: DateTime<Utc> = DateTime::from_timestamp_nanos(ts_nanos as i64);
         Self {
             name: adapter.name,
             version: adapter.version.into(),
@@ -192,21 +193,13 @@ impl From<puniyu_adapter::AdapterInfo> for AdapterInfo {
             protocol: adapter.protocol.into(),
             communication: adapter.communication.into(),
             address: adapter.address,
-            connect_time,
+            connect_time: adapter.connect_time,
         }
     }
 }
 
 impl From<AdapterInfo> for puniyu_adapter::AdapterInfo {
     fn from(adapter: AdapterInfo) -> Self {
-        let connect_time = {
-            let timestamp = adapter.connect_time.timestamp();
-            let nanos = adapter.connect_time.timestamp_subsec_nanos();
-            OffsetDateTime::from_unix_timestamp(timestamp)
-                .unwrap()
-                .replace_nanosecond(nanos)
-                .unwrap()
-        };
         Self {
             name: adapter.name,
             version: adapter.version.into(),
@@ -215,15 +208,13 @@ impl From<AdapterInfo> for puniyu_adapter::AdapterInfo {
             protocol: adapter.protocol.into(),
             communication: adapter.communication.into(),
             address: adapter.address,
-            connect_time,
+            connect_time: adapter.connect_time,
         }
     }
 }
 impl From<puniyu_protocol_adapter::AdapterInfo> for AdapterInfo {
     fn from(adapter: puniyu_protocol_adapter::AdapterInfo) -> Self {
         let adapter: puniyu_adapter::AdapterInfo = adapter.into();
-        let ts_nanos = adapter.connect_time.unix_timestamp_nanos();
-        let connect_time: DateTime<Utc> = DateTime::from_timestamp_nanos(ts_nanos as i64);
         Self {
             name: adapter.name,
             version: adapter.version.into(),
@@ -232,7 +223,7 @@ impl From<puniyu_protocol_adapter::AdapterInfo> for AdapterInfo {
             protocol: adapter.protocol.into(),
             communication: adapter.communication.into(),
             address: adapter.address,
-            connect_time,
+            connect_time: adapter.connect_time,
         }
     }
 }
@@ -240,10 +231,11 @@ impl From<puniyu_protocol_adapter::AdapterInfo> for AdapterInfo {
 impl From<AdapterInfo> for puniyu_protocol_adapter::AdapterInfo {
     fn from(adapter: AdapterInfo) -> Self {
         let adapter: puniyu_adapter::AdapterInfo = adapter.into();
-        let platform = puniyu_protocol::adapter::AdapterPlatform::try_from(adapter.platform).unwrap();
-        let standard = puniyu_protocol::adapter::AdapterStandard::try_from(adapter.standard).unwrap();
-        let protocol = puniyu_protocol::adapter::AdapterProtocol::try_from(adapter.protocol).unwrap();
-        let communication = puniyu_protocol::adapter::AdapterCommunication::try_from(adapter.communication).unwrap();
+        let platform = puniyu_protocol::adapter::AdapterPlatform::from(adapter.platform);
+        let standard = puniyu_protocol::adapter::AdapterStandard::from(adapter.standard);
+        let protocol = puniyu_protocol::adapter::AdapterProtocol::from(adapter.protocol);
+        let communication =
+            puniyu_protocol::adapter::AdapterCommunication::from(adapter.communication);
         Self {
             name: adapter.name,
             version: adapter.version.into(),
@@ -252,7 +244,7 @@ impl From<AdapterInfo> for puniyu_protocol_adapter::AdapterInfo {
             protocol: protocol.into(),
             communication: communication.into(),
             address: adapter.address,
-            connect_time: adapter.connect_time.unix_timestamp() as u64,
+            connect_time: adapter.connect_time.timestamp() as u64,
         }
     }
 }
