@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.3](https://github.com/puniyu/puniyu-node/compare/protocol-v0.2.2...protocol-v0.2.3) (2026-01-01)
+
+
+### 🐛 错误修复
+
+* **build:** 修复package配置 ([bc198b9](https://github.com/puniyu/puniyu-node/commit/bc198b98a84f7ecb211fd9d97dfe0c9b8de228ca))
+
 ## [0.2.2](https://github.com/puniyu/puniyu-node/compare/protocol-v0.2.1...protocol-v0.2.2) (2026-01-01)
 
 
