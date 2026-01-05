@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.4](https://github.com/puniyu/puniyu-node/compare/protocol-v0.2.3...protocol-v0.2.4) (2026-01-05)
+
+
+### ♻️ 代码重构
+
+* **protocol:** 重构协议适配器模块结构 ([ff3a202](https://github.com/puniyu/puniyu-node/commit/ff3a202c56a8c1f2e6ba03ba82f21f874bb1cc81))
+
 ## [0.2.3](https://github.com/puniyu/puniyu-node/compare/protocol-v0.2.2...protocol-v0.2.3) (2026-01-01)
 
 
