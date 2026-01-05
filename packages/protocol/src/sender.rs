@@ -1,13 +1,10 @@
 mod friend;
-
-use napi_derive::napi;
 pub use friend::FriendSender;
 mod group;
 pub use group::GroupSender;
 
-use puniyu_types::sender::Role as puniyu_role;
-use puniyu_types::sender::Sex as puniyu_sex;
-use puniyu_protocol::sender as puniyu_protocol_sender;
+use napi_derive::napi;
+use puniyu_protocol::sender as puniyu_sender;
 use crate::impl_enum_from_trait;
 
 
@@ -22,12 +19,8 @@ pub enum Sex {
     /// 未知
     Unknown,
 }
-impl_enum_from_trait!(Sex, puniyu_sex, {
-    Male => Male,
-    Female => Female,
-    Unknown => Unknown,
-});
-impl_enum_from_trait!(Sex, puniyu_protocol_sender::Sex, {
+
+impl_enum_from_trait!(Sex, puniyu_sender::Sex, {
     Male => Male,
     Female => Female,
     Unknown => Unknown,
@@ -51,13 +44,7 @@ pub enum Role {
     Unknown,
 }
 
-impl_enum_from_trait!(Role, puniyu_role, {
-    Owner => Owner,
-    Admin => Admin,
-    Member => Member,
-    Unknown => Unknown
-});
-impl_enum_from_trait!(Role, puniyu_protocol_sender::Role, {
+impl_enum_from_trait!(Role, puniyu_sender::Role, {
     Owner => Owner,
     Admin => Admin,
     Member => Member,
@@ -70,3 +57,35 @@ pub enum SenderType {
     Group(GroupSender),
 }
 
+impl From<puniyu_sender::sender_type::SenderType> for SenderType {
+    fn from(sender: puniyu_sender::sender_type::SenderType) -> Self {
+        match sender {
+            puniyu_sender::sender_type::SenderType::FriendSender(sender) => SenderType::Friend(sender.into()),
+            puniyu_sender::sender_type::SenderType::GroupSender(sender) => SenderType::Group(sender.into()),
+        }
+    }
+}
+
+impl From<SenderType> for puniyu_sender::sender_type::SenderType {
+    fn from(sender: SenderType) -> Self {
+        match sender {
+            SenderType::Friend(sender) => puniyu_sender::sender_type::SenderType::FriendSender(sender.into()),
+            SenderType::Group(sender) => puniyu_sender::sender_type::SenderType::GroupSender(sender.into()),
+        }
+    }
+}
+
+
+impl From<puniyu_sender::SenderType> for SenderType {
+    fn from(sender: puniyu_sender::SenderType) -> Self {
+        sender.sender_type.expect("SenderType: is None").into()
+    }
+}
+
+impl From<SenderType> for puniyu_sender::SenderType {
+    fn from(sender: SenderType) -> Self {
+        Self {
+            sender_type: Some(sender.into()),
+        }
+    }
+}

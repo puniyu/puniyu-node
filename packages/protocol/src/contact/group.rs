@@ -1,9 +1,8 @@
 use super::Scene;
 use serde::{Deserialize, Serialize};
 use napi_derive::napi;
-use puniyu_protocol::contact::{Contact, SceneType};
-use puniyu_types::contact::GroupContact as puniyu_contact;
-use crate::impl_from_trait;
+use puniyu_protocol::contact as puniyu_contact;
+use puniyu_protocol::contact::SceneType;
 
 #[derive(Debug, Clone, PartialEq, Deserialize, Serialize)]
 #[napi(object)]
@@ -16,13 +15,8 @@ pub struct GroupContact {
 	pub name: Option<String>,
 }
 
-impl_from_trait!(GroupContact, puniyu_contact, {
-    scene => scene,
-	peer => peer,
-	name => name,
-});
 
-impl From<GroupContact> for Contact {
+impl From<GroupContact> for puniyu_contact::Contact {
 	fn from(contact: GroupContact) -> Self {
 		let scene = SceneType::from(contact.scene);
 		Self {
@@ -33,8 +27,8 @@ impl From<GroupContact> for Contact {
 	}
 }
 
-impl From<Contact> for GroupContact {
-	fn from(contact: Contact) -> Self {
+impl From<puniyu_contact::Contact> for GroupContact {
+	fn from(contact: puniyu_contact::Contact) -> Self {
 		let scene = SceneType::try_from(contact.scene).unwrap();
 		Self {
 			scene: scene.into(),

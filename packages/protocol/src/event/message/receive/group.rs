@@ -3,9 +3,7 @@ use crate::contact::GroupContact;
 use crate::element::receive::Elements;
 use crate::sender::GroupSender;
 use napi_derive::napi;
-use puniyu_types::event::EventBase;
-use puniyu_types::event::message::{MessageBase, MessageBuilder};
-use puniyu_types::event::message::GroupMessage as puniyu_message;
+use puniyu_protocol::event::message::receive::GroupMessage as puniyu_message;
 
 #[napi(object)]
 pub struct GroupMessage {
@@ -23,37 +21,36 @@ pub struct GroupMessage {
 impl From<puniyu_message> for GroupMessage {
     fn from(message: puniyu_message) -> Self {
         Self {
-            bot: message.bot().to_owned().into(),
-            event_id: message.event_id().into(),
-            time: message.time() as u32,
-            self_id: message.self_id().into(),
-            user_id: message.user_id().into(),
-            message_id: message.message_id().into(),
+            bot: message.group_message_bot.unwrap_or_default().into(),
+            event_id: message.event_id,
+            time: message.time as u32,
+            self_id: message.self_id,
+            user_id: message.user_id,
+            message_id: message.message_id,
             elements: message
-                .elements()
-                .iter()
-                .map(|e| e.to_owned().into())
+                .elements
+                .into_iter()
+                .map(|e| e.into())
                 .collect(),
-            contact: message.contact().into(),
-            sender: message.sender().into(),
+            contact: message.contact.unwrap_or_default().into(),
+            sender: message.sender.unwrap_or_default().into(),
         }
     }
 }
 
 impl From<GroupMessage> for puniyu_message {
     fn from(message: GroupMessage) -> Self {
-        let builder = MessageBuilder {
-            bot: message.bot.into(),
-            event_id: message.event_id.into(),
+        Self {
+            group_message_bot: Some(message.bot.into()),
+            event_id: message.event_id,
+            time: message.time as u64,
             self_id: message.self_id,
             user_id: message.user_id,
-            contact: message.contact.into(),
-            sender: message.sender.into(),
-            time: message.time as u64,
             message_id: message.message_id,
             elements: message.elements.into_iter().map(|e| e.into()).collect(),
-        };
-        Self::new(builder)
+            contact: Some(message.contact.into()),
+            sender: Some(message.sender.into()),
+        }
     }
 }
 

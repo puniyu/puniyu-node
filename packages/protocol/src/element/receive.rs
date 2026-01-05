@@ -1,7 +1,7 @@
 use crate::impl_from_trait;
 use napi::bindgen_prelude::Buffer;
 use napi_derive::napi;
-use puniyu_types::element::receive as puniyu_element;
+use puniyu_protocol::element::receive as puniyu_element;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -21,7 +21,6 @@ pub struct AtElement {
     /// at元素目标id
     pub target_id: String,
 }
-
 
 impl_from_trait!(AtElement,puniyu_element::AtElement, {
     target_id => target_id
@@ -79,8 +78,8 @@ impl From<ImageElement> for puniyu_element::ImageElement {
         Self {
             file: element.file.to_vec().into(),
             summary: element.summary,
-            width: element.width as u64,
-            height: element.height as u64,
+            width: element.width,
+            height: element.height,
         }
     }
 }
@@ -90,8 +89,8 @@ impl From<puniyu_element::ImageElement> for ImageElement {
         Self {
             file: element.file.to_vec().into(),
             summary: element.summary,
-            width: element.width as u32,
-            height: element.height as u32,
+            width: element.width,
+            height: element.height,
         }
     }
 }
@@ -212,36 +211,66 @@ pub enum Elements {
     Xml(XmlElement),
 }
 
-impl From<Elements> for puniyu_element::Elements {
+impl From<Elements> for puniyu_element::element::Element {
     fn from(element: Elements) -> Self {
         match element {
-            Elements::Text(element) => puniyu_element::Elements::Text(element.into()),
-            Elements::At(element) => puniyu_element::Elements::At(element.into()),
-            Elements::Reply(element) => puniyu_element::Elements::Reply(element.into()),
-            Elements::Face(element) => puniyu_element::Elements::Face(element.into()),
-            Elements::Image(element) => puniyu_element::Elements::Image(element.into()),
-            Elements::File(element) => puniyu_element::Elements::File(element.into()),
-            Elements::Video(element) => puniyu_element::Elements::Video(element.into()),
-            Elements::Record(element) => puniyu_element::Elements::Record(element.into()),
-            Elements::Json(element) => puniyu_element::Elements::Json(element.into()),
-            Elements::Xml(element) => puniyu_element::Elements::Xml(element.into()),
+            Elements::Text(element) => {
+                puniyu_element::element::Element::TextElement(element.into())
+            }
+            Elements::At(element) => puniyu_element::element::Element::AtElement(element.into()),
+            Elements::Reply(element) => puniyu_element::element::Element::ReplyElement(element.into()),
+            Elements::Face(element) => puniyu_element::element::Element::FaceElement(element.into()),
+            Elements::Image(element) => puniyu_element::element::Element::ImageElement(element.into()),
+            Elements::File(element) => puniyu_element::element::Element::FileElement(element.into()),
+            Elements::Video(element) => puniyu_element::element::Element::VideoElement(element.into()),
+            Elements::Record(element) => puniyu_element::element::Element::RecordElement(element.into()),
+            Elements::Json(element) => puniyu_element::element::Element::JsonElement(element.into()),
+            Elements::Xml(element) => puniyu_element::element::Element::XmlElement(element.into()),
+        }
+    }
+}
+
+impl From<puniyu_element::element::Element> for Elements {
+    fn from(element: puniyu_element::element::Element) -> Self {
+        match element {
+            puniyu_element::element::Element::TextElement(element) => Elements::Text(element.into()),
+            puniyu_element::element::Element::AtElement(element) => Elements::At(element.into()),
+            puniyu_element::element::Element::ReplyElement(element) => Elements::Reply(element.into()),
+            puniyu_element::element::Element::FaceElement(element) => Elements::Face(element.into()),
+            puniyu_element::element::Element::ImageElement(element) => Elements::Image(element.into()),
+            puniyu_element::element::Element::FileElement(element) => Elements::File(element.into()),
+            puniyu_element::element::Element::VideoElement(element) => Elements::Video(element.into()),
+            puniyu_element::element::Element::RecordElement(element) => Elements::Record(element.into()),
+            puniyu_element::element::Element::JsonElement(element) => Elements::Json(element.into()),
+            puniyu_element::element::Element::XmlElement(element) => Elements::Xml(element.into()),
+        }
+    }
+}
+
+impl From<puniyu_element::Element> for Elements {
+    fn from(element: puniyu_element::Element) -> Self {
+        element.element.unwrap().into()
+    }
+}
+
+impl From<Elements> for puniyu_element::Element {
+    fn from(element: Elements) -> Self {
+        Self {
+            element: Some(element.into()),
         }
     }
 }
 
 impl From<puniyu_element::Elements> for Elements {
     fn from(element: puniyu_element::Elements) -> Self {
-        match element {
-            puniyu_element::Elements::Text(element) => Elements::Text(element.into()),
-            puniyu_element::Elements::At(element) => Elements::At(element.into()),
-            puniyu_element::Elements::Reply(element) => Elements::Reply(element.into()),
-            puniyu_element::Elements::Face(element) => Elements::Face(element.into()),
-            puniyu_element::Elements::Image(element) => Elements::Image(element.into()),
-            puniyu_element::Elements::File(element) => Elements::File(element.into()),
-            puniyu_element::Elements::Video(element) => Elements::Video(element.into()),
-            puniyu_element::Elements::Record(element) => Elements::Record(element.into()),
-            puniyu_element::Elements::Json(element) => Elements::Json(element.into()),
-            puniyu_element::Elements::Xml(element) => Elements::Xml(element.into()),
+        element.element.into_iter().map(|element| element.into()).next().unwrap()
+    }
+}
+
+impl From<Elements> for puniyu_element::Elements {
+    fn from(element: Elements) -> Self {
+        Self {
+            element: vec!(element.into()),
         }
     }
 }

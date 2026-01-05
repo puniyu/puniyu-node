@@ -3,7 +3,8 @@ use crate::contact::FriendContact;
 use crate::element::send::Elements;
 use crate::sender::FriendSender;
 use napi_derive::napi;
-use puniyu_protocol::event::message::send::FriendMessage as puniyu_protocol_message;
+use puniyu_protocol::event::message::send::FriendMessage as puniyu_message;
+
 #[napi(object)]
 pub struct FriendMessage {
     pub bot: BotInfo,
@@ -17,7 +18,7 @@ pub struct FriendMessage {
     pub sender: FriendSender,
 }
 
-impl From<FriendMessage> for puniyu_protocol_message {
+impl From<FriendMessage> for puniyu_message {
     fn from(message: FriendMessage) -> Self {
         let contact = puniyu_protocol::contact::Contact::try_from(message.contact).unwrap();
         let sender = puniyu_protocol::sender::FriendSender::try_from(message.sender).unwrap();
@@ -35,8 +36,8 @@ impl From<FriendMessage> for puniyu_protocol_message {
     }
 }
 
-impl From<puniyu_protocol_message> for FriendMessage {
-    fn from(message: puniyu_protocol_message) -> Self {
+impl From<puniyu_message> for FriendMessage {
+    fn from(message: puniyu_message) -> Self {
         Self {
             bot: message.friend_message_bot.unwrap().into(),
             event_id: message.event_id,

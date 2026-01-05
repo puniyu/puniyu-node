@@ -1821,7 +1821,7 @@ checksum = "95067976aca6421a523e491fce939a3e65249bac4b977adee0ee9771568e8aa3"
 [[package]]
 name = "puniyu_common"
 version = "0.6.0"
-source = "git+https://github.com/puniyu/puniyu?rev=6112d24#6112d2497712b9571b961707e27b5cd33bc6f29e"
+source = "git+https://github.com/puniyu/puniyu?rev=e1671ad#e1671ad8ebc180f066be1ec58a508194d66e4850"
 dependencies = [
  "serde",
  "strum",
@@ -1832,7 +1832,7 @@ dependencies = [
 [[package]]
 name = "puniyu_config"
 version = "0.6.0"
-source = "git+https://github.com/puniyu/puniyu?rev=6112d24#6112d2497712b9571b961707e27b5cd33bc6f29e"
+source = "git+https://github.com/puniyu/puniyu?rev=e1671ad#e1671ad8ebc180f066be1ec58a508194d66e4850"
 dependencies = [
  "notify-debouncer-full",
  "puniyu_common",
@@ -1878,7 +1878,7 @@ dependencies = [
 [[package]]
 name = "puniyu_protocol"
 version = "0.1.0"
-source = "git+https://github.com/puniyu/puniyu?rev=6112d24#6112d2497712b9571b961707e27b5cd33bc6f29e"
+source = "git+https://github.com/puniyu/puniyu?rev=e1671ad#e1671ad8ebc180f066be1ec58a508194d66e4850"
 dependencies = [
  "bytes",
  "chrono",
@@ -1892,7 +1892,7 @@ dependencies = [
 [[package]]
 name = "puniyu_types"
 version = "0.6.0"
-source = "git+https://github.com/puniyu/puniyu?rev=6112d24#6112d2497712b9571b961707e27b5cd33bc6f29e"
+source = "git+https://github.com/puniyu/puniyu?rev=e1671ad#e1671ad8ebc180f066be1ec58a508194d66e4850"
 dependencies = [
  "actix-web",
  "async-trait",

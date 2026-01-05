@@ -1,9 +1,7 @@
 use crate::account::AccountInfo;
 use crate::adapter::AdapterInfo;
-use crate::impl_from_trait;
 use napi_derive::napi;
-use puniyu_protocol::bot::BotInfo as puniyu_protocol_bot;
-use puniyu_types::bot::BotInfo as puniyu_bot;
+use puniyu_protocol::bot::BotInfo as puniyu_bot;
 
 #[napi(object)]
 pub struct BotInfo {
@@ -13,12 +11,8 @@ pub struct BotInfo {
     pub account: AccountInfo,
 }
 
-impl_from_trait!(BotInfo, puniyu_bot, {
-    adapter => adapter,
-    account => account,
-});
 
-impl From<BotInfo> for puniyu_protocol_bot {
+impl From<BotInfo> for puniyu_bot {
     fn from(bot: BotInfo) -> Self {
         Self {
             adapter: Some(bot.adapter.into()),
@@ -27,11 +21,11 @@ impl From<BotInfo> for puniyu_protocol_bot {
     }
 }
 
-impl From<puniyu_protocol_bot> for BotInfo {
-    fn from(bot: puniyu_protocol_bot) -> Self {
+impl From<puniyu_bot> for BotInfo {
+    fn from(bot: puniyu_bot) -> Self {
         Self {
-            adapter: bot.adapter.unwrap().into(),
-            account: bot.account.unwrap().into(),
+            adapter: bot.adapter.unwrap_or_default().into(),
+            account: bot.account.unwrap_or_default().into(),
         }
     }
 }

@@ -2,8 +2,7 @@ use crate::impl_enum_from_trait;
 use crate::version::Version;
 use chrono::{DateTime, Utc};
 use napi_derive::napi;
-use puniyu_protocol::adapter as puniyu_protocol_adapter;
-use puniyu_types::adapter as puniyu_adapter;
+use puniyu_protocol::adapter as puniyu_adapter;
 
 /// 适配器平台
 ///
@@ -25,14 +24,6 @@ pub enum AdapterPlatform {
 }
 
 impl_enum_from_trait!(AdapterPlatform, puniyu_adapter::AdapterPlatform, {
-    QQ => QQ,
-    Wechat => Wechat,
-    Telegram => Telegram,
-    Discord => Discord,
-    Kook => Kook,
-    Other => Other,
-});
-impl_enum_from_trait!(AdapterPlatform, puniyu_protocol_adapter::AdapterPlatform, {
     QQ => Qq,
     Wechat => WeChat,
     Telegram => Telegram,
@@ -58,13 +49,6 @@ pub enum AdapterStandard {
 }
 
 impl_enum_from_trait!(AdapterStandard, puniyu_adapter::AdapterStandard, {
-    OneBotV11 => OneBotV11,
-    OneBotV12 => OneBotV12,
-    Oicq => Oicq,
-    Icqq => Icqq,
-    Other => Other,
-});
-impl_enum_from_trait!(AdapterStandard, puniyu_protocol_adapter::AdapterStandard, {
     OneBotV11 => OneBotV11,
     OneBotV12 => OneBotV12,
     Oicq => Oicq,
@@ -100,18 +84,6 @@ pub enum AdapterProtocol {
 }
 
 impl_enum_from_trait!(AdapterProtocol, puniyu_adapter::AdapterProtocol, {
-    QQBot => QQBot,
-    Oicq => Oicq,
-    Icqq => Icqq,
-    GoCqHttp => GoCqHttp,
-    NapCat => NapCat,
-    LLOneBot => LLOneBot,
-    Conwechat => Conwechat,
-    Lagrange => Lagrange,
-    Console => Console,
-    Other => Other,
-});
-impl_enum_from_trait!(AdapterProtocol, puniyu_protocol_adapter::AdapterProtocol, {
     QQBot => QqBot,
     Oicq => Oicq,
     Icqq => Icqq,
@@ -149,13 +121,6 @@ impl_enum_from_trait!(AdapterCommunication, puniyu_adapter::AdapterCommunication
     Grpc => Grpc,
     Other => Other,
 });
-impl_enum_from_trait!(AdapterCommunication, puniyu_protocol_adapter::AdapterCommunication, {
-    Http => Http,
-    WebSocketServer => WebSocketServer,
-    WebSocketClient => WebSocketClient,
-    Grpc => Grpc,
-    Other => Other,
-});
 
 /// 适配器信息
 #[napi(object)]
@@ -181,61 +146,36 @@ pub struct AdapterInfo {
     pub address: Option<String>,
     /// 连接时间
     pub connect_time: DateTime<Utc>,
+    /// 鉴权密钥
+    pub secret: Option<String>
 }
 
 impl From<puniyu_adapter::AdapterInfo> for AdapterInfo {
     fn from(adapter: puniyu_adapter::AdapterInfo) -> Self {
+        let platform = puniyu_adapter::AdapterPlatform::try_from(adapter.platform).unwrap_or_default();
+        let standard = puniyu_adapter::AdapterStandard::try_from(adapter.standard).unwrap_or_default();
+        let protocol = puniyu_adapter::AdapterProtocol::try_from(adapter.protocol).unwrap_or_default();
+        let communication = puniyu_adapter::AdapterCommunication::try_from(adapter.communication).unwrap_or_default();
         Self {
             name: adapter.name,
             version: adapter.version.into(),
-            platform: adapter.platform.into(),
-            standard: adapter.standard.into(),
-            protocol: adapter.protocol.into(),
-            communication: adapter.communication.into(),
+            platform: platform.into(),
+            standard: standard.into(),
+            protocol: protocol.into(),
+            communication: communication.into(),
             address: adapter.address,
-            connect_time: adapter.connect_time,
+            connect_time: DateTime::from_timestamp_secs(adapter.connect_time as i64).unwrap(),
+            secret: adapter.secret,
         }
     }
 }
 
 impl From<AdapterInfo> for puniyu_adapter::AdapterInfo {
     fn from(adapter: AdapterInfo) -> Self {
-        Self {
-            name: adapter.name,
-            version: adapter.version.into(),
-            platform: adapter.platform.into(),
-            standard: adapter.standard.into(),
-            protocol: adapter.protocol.into(),
-            communication: adapter.communication.into(),
-            address: adapter.address,
-            connect_time: adapter.connect_time,
-        }
-    }
-}
-impl From<puniyu_protocol_adapter::AdapterInfo> for AdapterInfo {
-    fn from(adapter: puniyu_protocol_adapter::AdapterInfo) -> Self {
-        let adapter: puniyu_adapter::AdapterInfo = adapter.into();
-        Self {
-            name: adapter.name,
-            version: adapter.version.into(),
-            platform: adapter.platform.into(),
-            standard: adapter.standard.into(),
-            protocol: adapter.protocol.into(),
-            communication: adapter.communication.into(),
-            address: adapter.address,
-            connect_time: adapter.connect_time,
-        }
-    }
-}
-
-impl From<AdapterInfo> for puniyu_protocol_adapter::AdapterInfo {
-    fn from(adapter: AdapterInfo) -> Self {
-        let adapter: puniyu_adapter::AdapterInfo = adapter.into();
-        let platform = puniyu_protocol::adapter::AdapterPlatform::from(adapter.platform);
-        let standard = puniyu_protocol::adapter::AdapterStandard::from(adapter.standard);
-        let protocol = puniyu_protocol::adapter::AdapterProtocol::from(adapter.protocol);
-        let communication =
-            puniyu_protocol::adapter::AdapterCommunication::from(adapter.communication);
+        let platform = puniyu_adapter::AdapterPlatform::from(adapter.platform);
+        let standard = puniyu_adapter::AdapterStandard::from(adapter.standard);
+        let protocol = puniyu_adapter::AdapterProtocol::from(adapter.protocol);
+        let communication = puniyu_adapter::AdapterCommunication::from(adapter.communication);
         Self {
             name: adapter.name,
             version: adapter.version.into(),
@@ -245,6 +185,7 @@ impl From<AdapterInfo> for puniyu_protocol_adapter::AdapterInfo {
             communication: communication.into(),
             address: adapter.address,
             connect_time: adapter.connect_time.timestamp() as u64,
+            secret: adapter.secret,
         }
     }
 }

@@ -12,9 +12,8 @@ impl Protocol {
     #[napi]
     pub fn decode(&self, data: Buffer) -> napi::Result<EventReceive> {
         let mut bytes: Bytes = data.to_vec().into();
-        let p_type = puniyu_protocol::event::EventReceive::decode(&mut bytes);
-        let r_type: puniyu_types::event::Event = p_type.unwrap().into();
-        Ok(r_type.into())
+        let p_type = puniyu_protocol::event::EventReceive::decode(&mut bytes).map_err(|e| napi::Error::from_reason(e.to_string()))?;
+        Ok(p_type.into())
     }
 
     #[napi]
