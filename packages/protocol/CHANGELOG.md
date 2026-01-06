@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.5](https://github.com/puniyu/puniyu-node/compare/protocol-v0.2.4...protocol-v0.2.5) (2026-01-06)
+
+
+### 🐛 错误修复
+
+* **protocol:** 修复协议编解码方法中的类型错误 ([1b9368a](https://github.com/puniyu/puniyu-node/commit/1b9368a761effd88cea9f4c495774c558cc57731))
+
 ## [0.2.4](https://github.com/puniyu/puniyu-node/compare/protocol-v0.2.3...protocol-v0.2.4) (2026-01-05)
 
 
