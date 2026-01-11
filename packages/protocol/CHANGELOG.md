@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/puniyu/puniyu-node/compare/protocol-v0.2.6...protocol-v0.3.0) (2026-01-11)
+
+
+### ✨ 新功能
+
+* **protocol:** 添加 bytes 依赖支持 ([9cb38a9](https://github.com/puniyu/puniyu-node/commit/9cb38a941d0b1c39fe93358410ecae101b1cb9eb))
+
 ## [0.2.6](https://github.com/puniyu/puniyu-node/compare/protocol-v0.2.5...protocol-v0.2.6) (2026-01-11)
 
 
