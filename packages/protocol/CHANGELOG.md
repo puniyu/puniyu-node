@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.6](https://github.com/puniyu/puniyu-node/compare/protocol-v0.2.5...protocol-v0.2.6) (2026-01-11)
+
+
+### 🐛 错误修复
+
+* **protocol:** 修正协议解码函数返回类型 ([6d55b1f](https://github.com/puniyu/puniyu-node/commit/6d55b1fd18766b7606b7a0be5897519c45ef6c96))
+
 ## [0.2.5](https://github.com/puniyu/puniyu-node/compare/protocol-v0.2.4...protocol-v0.2.5) (2026-01-06)
 
 
