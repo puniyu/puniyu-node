@@ -15,12 +15,14 @@ crate-type = ["rlib", "cdylib"]
 [dependencies]
 serde.workspace = true
 napi-derive.workspace = true
+bytes.workspace = true
 napi = { workspace = true, features = ["chrono_date"] }
 prost = { version = "0.14.1" }
 
 puniyu_types = { git = "https://github.com/puniyu/puniyu", rev = "e240974" }
 puniyu_protocol = { git = "https://github.com/puniyu/puniyu", rev = "e240974" }
 chrono = "0.4.42"
+
 
 
 [build-dependencies]

@@ -1864,6 +1864,7 @@ dependencies = [
 name = "puniyu_node_protocol"
 version = "0.2.6"
 dependencies = [
+ "bytes",
  "chrono",
  "napi",
  "napi-build",
